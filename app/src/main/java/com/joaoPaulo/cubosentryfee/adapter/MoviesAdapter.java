@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.joaoPaulo.cubosentryfee.R;
 import com.joaoPaulo.cubosentryfee.model.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ import java.util.List;
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder> {
     private List<Movie> movieList;
     private  Context context;
+    public static final String IMAGE_URL_BASE_PATH="http://image.tmdb.org/t/p/w342//";
+
 
     public MoviesAdapter(List<Movie> movieList, Context context){
         this.movieList = movieList;
@@ -34,8 +37,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        Movie movie = movieList.get(i);
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
+        Movie movie = movieList.get(position);
+        String image_url = IMAGE_URL_BASE_PATH + movie.getPosterPath();
+        Picasso.get().load(image_url).into(myViewHolder.poster);
+
         myViewHolder.title.setText(movie.getTitle());
 
     }
@@ -49,10 +55,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView title;
+        private  ImageView poster;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.titleId);
+            poster = itemView.findViewById(R.id.posterId);
         }
     }
 }

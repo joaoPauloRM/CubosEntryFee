@@ -23,7 +23,7 @@ public class FictionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fiction, container, false);
 
         InitializeList recycler = new InitializeList();
-        recycler.onCreate(view, getContext(), R.id.recyclerFictionId, API.initRetrofit().getActionMovies(API.API_KEY));
+        recycler.onCreate(view, getContext(), R.id.recyclerFictionId, API.initRetrofit().getFictionMovies(API.API_KEY));
 
         return view;
     }
