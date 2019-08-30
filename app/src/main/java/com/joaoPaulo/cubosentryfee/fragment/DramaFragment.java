@@ -22,7 +22,7 @@ public class DramaFragment extends Fragment {
          View view = inflater.inflate(R.layout.fragment_drama, container, false);
 
         InitializeList recycler = new InitializeList();
-        recycler.onCreate(view, getContext(), R.id.recyclerDramaId, API.initRetrofit().getDramaMovies(API.API_KEY));
+        recycler.onCreate(view,getActivity(), R.id.recyclerDramaId, API.initRetrofit().getDramaMovies(API.API_KEY));
 
         return view;
     }

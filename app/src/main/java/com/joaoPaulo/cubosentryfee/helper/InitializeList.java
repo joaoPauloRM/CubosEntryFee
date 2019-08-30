@@ -1,17 +1,22 @@
 package com.joaoPaulo.cubosentryfee.helper;
 
 import android.content.Context;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
+import android.content.Intent;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.AdapterView;
 
+import com.joaoPaulo.cubosentryfee.activity.MainActivity;
+import com.joaoPaulo.cubosentryfee.activity.MovieInformation;
 import com.joaoPaulo.cubosentryfee.adapter.MoviesAdapter;
 import com.joaoPaulo.cubosentryfee.model.Movie;
 import com.joaoPaulo.cubosentryfee.model.MovieResponse;
-import com.joaoPaulo.cubosentryfee.rest.MovieApiService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,27 +24,53 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class InitializeList {
+
+public class InitializeList extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Movie> movies = new ArrayList<>();
     private MoviesAdapter moviesAdapter;
 
-    public void onCreate(View view, final Context context, Integer recyclerId, Call<MovieResponse> call) {
+
+
+
+    public void onCreate(View view, Context context ,Integer recyclerId, Call<MovieResponse> call) {
 
         recyclerView = view.findViewById(recyclerId);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), LinearLayout.VERTICAL));
+        GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(context,
+                recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Movie selectedMovie = movies.get(position);
+                Intent intent = new Intent(MainActivity.mainContext, MovieInformation.class);
+                intent.putExtra("selectedMovie", selectedMovie);
+                MainActivity.mainContext.startActivity(intent);
+
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        }));
+
 
         call.enqueue(new Callback<MovieResponse>() {
 
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 movies = response.body().getMovieList();
-                moviesAdapter = new MoviesAdapter(movies, context);
+                moviesAdapter = new MoviesAdapter(movies);
                 recyclerView.setAdapter(moviesAdapter);
                 Log.i("INFO", "Movies" + movies.size());
             }

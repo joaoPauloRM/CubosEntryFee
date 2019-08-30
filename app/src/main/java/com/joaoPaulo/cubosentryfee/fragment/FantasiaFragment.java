@@ -23,7 +23,7 @@ public class FantasiaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fantasia, container, false);
 
         InitializeList recycler = new InitializeList();
-        recycler.onCreate(view, getContext(), R.id.recyclerFantasyId, API.initRetrofit().getFantasyMovies(API.API_KEY) );
+        recycler.onCreate(view, getActivity(), R.id.recyclerFantasyId, API.initRetrofit().getFantasyMovies(API.API_KEY) );
 
         return view;
     }

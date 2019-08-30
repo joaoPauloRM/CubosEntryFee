@@ -22,7 +22,7 @@ public class ActionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_action, container, false);
 
         InitializeList recycler = new InitializeList();
-        recycler.onCreate(view, getContext(), R.id.recyclerActionId, API.initRetrofit().getActionMovies(API.API_KEY) );
+        recycler.onCreate(view, getActivity(), R.id.recyclerActionId, API.initRetrofit().getActionMovies(API.API_KEY) );
 
         return view;
     }

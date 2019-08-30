@@ -18,13 +18,12 @@ import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder> {
     private List<Movie> movieList;
-    private  Context context;
     public static final String IMAGE_URL_BASE_PATH="http://image.tmdb.org/t/p/w342//";
 
 
-    public MoviesAdapter(List<Movie> movieList, Context context){
+    public MoviesAdapter(List<Movie> movieList){
         this.movieList = movieList;
-        this.context=context;
+
     }
 
 
