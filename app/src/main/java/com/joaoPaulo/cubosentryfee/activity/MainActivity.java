@@ -12,11 +12,7 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
-
 public class MainActivity extends AppCompatActivity {
-
-    private ViewPager viewPager;
-    private SmartTabLayout smartTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().setElevation(0);
 
-        viewPager = findViewById(R.id.viewpager);
-        smartTabLayout = findViewById(R.id.viewpagertab);
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        SmartTabLayout smartTabLayout = findViewById(R.id.viewpagertab);
 
         FragmentPagerItemAdapter viewPagerAdapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(),

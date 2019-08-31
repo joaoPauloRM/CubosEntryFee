@@ -1,6 +1,5 @@
 package com.joaoPaulo.cubosentryfee.fragment;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,7 +28,7 @@ public class FictionFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fiction, container, false);
         MainActivity main = (MainActivity) getActivity();
-        init.onCreate(view, main, R.id.recyclerFictionId, API.initRetrofit().getFictionMovies(API.KEY));
+        init.createView(view, main, R.id.recyclerFictionId, API.initRetrofit().getFictionMovies(API.KEY));
 
         return view;
     }

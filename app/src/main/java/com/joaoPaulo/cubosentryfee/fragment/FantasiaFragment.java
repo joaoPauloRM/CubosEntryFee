@@ -30,7 +30,7 @@ public class FantasiaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fantasia, container, false);
         MainActivity main = (MainActivity) getActivity();
 
-        init.onCreate(view, main, R.id.recyclerFantasyId, API.initRetrofit().getFantasyMovies(API.KEY));
+        init.createView(view, main, R.id.recyclerFantasyId, API.initRetrofit().getFantasyMovies(API.KEY));
 
         return view;
     }

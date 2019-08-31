@@ -27,9 +27,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     public MoviesAdapter(List<Movie> movieList){
         this.movieList = movieList;
         movieListFull = new ArrayList<>(movieList);
-
     }
-
 
     @NonNull
     @Override
@@ -55,12 +53,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    protected class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView title;
         private  ImageView poster;
 
-        public MyViewHolder(@NonNull View itemView) {
+        protected MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.titleId);
             poster = itemView.findViewById(R.id.posterId);

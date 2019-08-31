@@ -19,5 +19,6 @@ public interface MovieApiService {
     @GET("discover/movie?with_genres=878")
     Call<MovieResponse> getFictionMovies(@Query("api_key") String apiKey);
 
+
 }
 

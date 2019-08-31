@@ -13,9 +13,7 @@ public class API {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
-        MovieApiService movieApiService = retrofit.create(MovieApiService.class);
-        return movieApiService;
+        return retrofit.create(MovieApiService.class);
     }
 
 

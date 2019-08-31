@@ -28,7 +28,7 @@ public class ActionFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_action, container, false);
         MainActivity main = (MainActivity) getActivity();
-        init.onCreate(view, main, R.id.recyclerActionId, API.initRetrofit().getActionMovies(API.KEY));
+        init.createView(view, main, R.id.recyclerActionId, API.initRetrofit().getActionMovies(API.KEY));
         return view;
     }
 

@@ -30,7 +30,7 @@ public class DramaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_drama, container, false);
         MainActivity main = (MainActivity) getActivity();
 
-        init.onCreate(view, main, R.id.recyclerDramaId, API.initRetrofit().getDramaMovies(API.KEY));
+        init.createView(view, main, R.id.recyclerDramaId, API.initRetrofit().getDramaMovies(API.KEY));
 
         return view;
     }

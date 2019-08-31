@@ -32,7 +32,7 @@ public class InitializeList extends AppCompatActivity {
         return moviesAdapter;
     }
 
-    public void onCreate(View view, final Context context , Integer recyclerId, Call<MovieResponse> call) {
+    public void createView(View view, final Context context , Integer recyclerId, Call<MovieResponse> call) {
 
         recyclerView = view.findViewById(recyclerId);
         recyclerView.setHasFixedSize(true);
@@ -48,34 +48,32 @@ public class InitializeList extends AppCompatActivity {
                 Intent intent = new Intent(context, MovieInformation.class);
                 intent.putExtra("selectedMovie", selectedMovie);
                 context.startActivity(intent);
-
             }
 
             @Override
             public void onLongItemClick(View view, int position) {
-
             }
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
             }
         }));
-
 
         call.enqueue(new Callback<MovieResponse>() {
 
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                if(!response.isSuccessful()){
+                    Log.i("Code:", "" + response.code());
+                    return;
+                }
                 movies = response.body().getMovieList();
                 moviesAdapter = new MoviesAdapter(movies);
                 recyclerView.setAdapter(moviesAdapter);
-                Log.i("INFO", "Movies" + movies.size());
             }
 
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
-                Log.i("ERROR", t.toString());
             }
         });
     }
