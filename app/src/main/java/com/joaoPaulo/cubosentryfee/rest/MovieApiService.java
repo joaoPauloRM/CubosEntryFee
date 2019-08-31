@@ -2,7 +2,6 @@ package com.joaoPaulo.cubosentryfee.rest;
 
 import com.joaoPaulo.cubosentryfee.model.MovieResponse;
 
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

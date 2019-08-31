@@ -26,7 +26,11 @@ import retrofit2.Response;
 public class InitializeList extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Movie> movies = new ArrayList<>();
-    private static MoviesAdapter moviesAdapter;
+    private MoviesAdapter moviesAdapter;
+
+    public MoviesAdapter getMoviesAdapter() {
+        return moviesAdapter;
+    }
 
     public void onCreate(View view, final Context context , Integer recyclerId, Call<MovieResponse> call) {
 
