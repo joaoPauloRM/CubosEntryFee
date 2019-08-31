@@ -2,17 +2,14 @@ package com.joaoPaulo.cubosentryfee.helper;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.MotionEvent;
+
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.joaoPaulo.cubosentryfee.activity.MainActivity;
 import com.joaoPaulo.cubosentryfee.activity.MovieInformation;
 import com.joaoPaulo.cubosentryfee.adapter.MoviesAdapter;
 import com.joaoPaulo.cubosentryfee.model.Movie;
@@ -29,12 +26,9 @@ import retrofit2.Response;
 public class InitializeList extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Movie> movies = new ArrayList<>();
-    private MoviesAdapter moviesAdapter;
+    private static MoviesAdapter moviesAdapter;
 
-
-
-
-    public void onCreate(View view, Context context ,Integer recyclerId, Call<MovieResponse> call) {
+    public void onCreate(View view, final Context context , Integer recyclerId, Call<MovieResponse> call) {
 
         recyclerView = view.findViewById(recyclerId);
         recyclerView.setHasFixedSize(true);
@@ -47,9 +41,9 @@ public class InitializeList extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 Movie selectedMovie = movies.get(position);
-                Intent intent = new Intent(MainActivity.mainContext, MovieInformation.class);
+                Intent intent = new Intent(context, MovieInformation.class);
                 intent.putExtra("selectedMovie", selectedMovie);
-                MainActivity.mainContext.startActivity(intent);
+                context.startActivity(intent);
 
             }
 
@@ -81,6 +75,7 @@ public class InitializeList extends AppCompatActivity {
             }
         });
     }
+
 
 
 }

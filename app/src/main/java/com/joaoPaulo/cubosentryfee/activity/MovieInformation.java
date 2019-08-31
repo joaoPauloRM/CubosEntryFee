@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.joaoPaulo.cubosentryfee.R;
 import com.joaoPaulo.cubosentryfee.model.Movie;
+import com.joaoPaulo.cubosentryfee.rest.API;
 import com.squareup.picasso.Picasso;
 
 public class MovieInformation extends AppCompatActivity {
@@ -16,7 +17,6 @@ public class MovieInformation extends AppCompatActivity {
     private Movie currentMovie;
     private TextView overView;
     private ImageView poster_path;
-    public static final String IMAGE_URL_BASE_PATH="http://image.tmdb.org/t/p/w342//";
 
 
     @Override
@@ -25,13 +25,17 @@ public class MovieInformation extends AppCompatActivity {
         setContentView(R.layout.activity_movie_information);
         overView = findViewById(R.id.infoOverviewId);
         poster_path = findViewById(R.id.infoImageId);
+        getSupportActionBar().setTitle("MovieInformation");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         currentMovie = (Movie) getIntent().getSerializableExtra("selectedMovie");
         if(currentMovie!=null){
             overView.setText(currentMovie.getOverview());
-            String image_url = IMAGE_URL_BASE_PATH + currentMovie.getPosterPath();
+            String image_url = API.IMAGE_URL_BASE_PATH + currentMovie.getBackDropPath();
             Picasso.get().load(image_url).into(poster_path);
         }
     }
+
 
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.joaoPaulo.cubosentryfee.R;
+import com.joaoPaulo.cubosentryfee.activity.MainActivity;
 import com.joaoPaulo.cubosentryfee.helper.InitializeList;
 import com.joaoPaulo.cubosentryfee.rest.API;
 
@@ -19,10 +20,11 @@ public class DramaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-         View view = inflater.inflate(R.layout.fragment_drama, container, false);
+        View view = inflater.inflate(R.layout.fragment_drama, container, false);
+        MainActivity main = (MainActivity) getActivity();
 
         InitializeList recycler = new InitializeList();
-        recycler.onCreate(view,getActivity(), R.id.recyclerDramaId, API.initRetrofit().getDramaMovies(API.API_KEY));
+        recycler.onCreate(view, main, R.id.recyclerDramaId, API.initRetrofit().getDramaMovies(API.API_KEY));
 
         return view;
     }
